@@ -41,13 +41,13 @@
 		    	{{$errors->first('is_active')}}
 		    @endif
 		  </div>
-		  <div class="form-group {{$errors->has('file') ? 'has-error' : '' }}">
+		  <div class="form-group {{$errors->has('photo_id') ? 'has-error' : '' }}">
 		    <!--<label for="post_title">Post Title</label>-->
-		    {!! Form::label('file', 'File:', ['for' => 'file']) !!}
+		    {!! Form::label('photo_id', 'Photo:', ['for' => 'photo_id']) !!}
 		    <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->
-		    {!! Form::file('file', null, ['class' => 'form-control']) !!}
-		    @if($errors->has('file'))
-		    	{{$errors->first('file')}}
+		    {!! Form::file('photo_id', null, ['class' => 'form-control']) !!}
+		    @if($errors->has('photo_id'))
+		    	{{$errors->first('photo_id')}}
 		    @endif
 		  </div>
 		  <div class="form-group {{$errors->has('password') ? 'has-error' : '' }}">
