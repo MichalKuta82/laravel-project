@@ -59,7 +59,14 @@
 		    <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->
 		    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password', 'name' => 'password']) !!}
 		  </div>
-		  {!! Form::submit('Update User', ['class' => 'btn btn-primary', 'name' => 'submit']) !!}
+		  <div class="form-group">
+		  	{!! Form::submit('Update User', ['class' => 'btn btn-primary  col-md-6', 'name' => 'submit']) !!}
+		  <!--<button type="submit" name="submit" class="btn btn-primary">Create</button>-->
+		  </div>
+		{!! Form::close() !!}
+
+		{!! Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id]]) !!}
+			{!! Form::submit('Delete User', ['class' => 'btn btn-danger col-md-6', 'name' => 'submit']) !!}
 		  <!--<button type="submit" name="submit" class="btn btn-primary">Create</button>-->
 		{!! Form::close() !!}
 	</div>

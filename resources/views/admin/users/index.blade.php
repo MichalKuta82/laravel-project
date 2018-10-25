@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if(Session::has('deleted_user'))
+
+  <div class="alert alert-danger text-center">{{session('deleted_user')}}</div>
+
+@endif
+
 <h1>Users</h1>
 
 <table class="table">
