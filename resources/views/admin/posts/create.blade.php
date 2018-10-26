@@ -21,7 +21,7 @@
 		    <!--<label for="post_title">Post Title</label>-->
 		    {!! Form::label('category_id', 'Category:', ['for' => 'category_id']) !!}
 		    <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->
-		    {!! Form::select('category_id', ['1' => 'PHP', 0 => 'JS'], null, ['class' => 'form-control', 'placeholder' => 'Category', 'name' => 'category_id']) !!}
+		    {!! Form::select('category_id', ['' => 'Chose Category'] + $categories, null, ['class' => 'form-control', 'placeholder' => 'Category', 'name' => 'category_id']) !!}
 		    @if($errors->has('category_id'))
 		    	{{$errors->first('category_id')}}
 		    @endif

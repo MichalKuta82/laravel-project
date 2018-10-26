@@ -32,9 +32,9 @@
 			  	@foreach($posts as $post)
 				    <tr>
 				      <th scope="row">{{$post->id}}</th>
-				      <td><img width="50" src="{{$post->photo ? $post->photo->file : 'https://via.placeholder.com/200'}}"></td>
+				      <td><img width="50" src="{{($post->photo_id > 0) ? $post->photo->file : 'https://via.placeholder.com/200'}}"></td>
 				      <td>{{$post->user->name}}</td>
-				      <td>{{$post->category_id}}</td>
+				      <td>{{($post->category_id > 0) ? $post->category->name : 'Uncategorized'}}</td>
 				      <td>{{$post->title}}</td>
 				      <td>{{$post->body}}</td>
 				      <td>{{$post->created_at->toDayDateTimeString()}}</td>
