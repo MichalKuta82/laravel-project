@@ -79,8 +79,11 @@ class AdminUsersController extends Controller
 
         $input['password'] = bcrypt($request->password);
 
-        User::create($input);
+        $user = User::create($input);
         // User::create($request->all());
+
+        Session::flash('created_user', 'The user ' . $user->name . ' has been created');
+
         return redirect('/admin/users');
         // return $request->all();
     }
@@ -148,6 +151,8 @@ class AdminUsersController extends Controller
 
         $user->update($input);
 
+        Session::flash('updated_user', 'The user ' . $user->name . ' has been updated');
+
         return redirect('/admin/users');
 
     }
@@ -167,7 +172,7 @@ class AdminUsersController extends Controller
 
         $user->delete();
 
-        Session::flash('deleted_user', 'The user has been deleted');
+        Session::flash('deleted_user', 'The user ' . $user->name . ' has been deleted');
 
         return redirect('/admin/users');
     }

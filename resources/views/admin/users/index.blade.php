@@ -3,9 +3,13 @@
 @section('content')
 
 @if(Session::has('deleted_user'))
-
   <div class="alert alert-danger text-center">{{session('deleted_user')}}</div>
-
+@endif
+@if(Session::has('updated_user'))
+  <div class="alert alert-success text-center">{{session('updated_user')}}</div>
+@endif
+@if(Session::has('created_user'))
+  <div class="alert alert-success text-center">{{session('created_user')}}</div>
 @endif
 
 <h1>Users</h1>
