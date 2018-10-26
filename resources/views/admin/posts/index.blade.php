@@ -9,7 +9,7 @@
   <div class="alert alert-success text-center">{{session('updated_post')}}</div>
 @endif
 @if(Session::has('deleted_post'))
-  <div class="alert alert-alert text-center">{{session('deleted_post')}}</div>
+  <div class="alert alert-danger text-center">{{session('deleted_post')}}</div>
 @endif
 
 	<h1>Posts</h1>
@@ -33,10 +33,10 @@
 				    <tr>
 				      <th scope="row">{{$post->id}}</th>
 				      <td><img width="50" src="{{($post->photo_id > 0) ? $post->photo->file : 'https://via.placeholder.com/200'}}"></td>
-				      <td>{{$post->user->name}}</td>
+				      <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
 				      <td>{{($post->category_id > 0) ? $post->category->name : 'Uncategorized'}}</td>
 				      <td>{{$post->title}}</td>
-				      <td>{{$post->body}}</td>
+				      <td>{{str_limit($post->body, 15)}}</td>
 				      <td>{{$post->created_at->toDayDateTimeString()}}</td>
 				      <td>{{$post->updated_at->toDayDateTimeString()}}</td>
 				    </tr>

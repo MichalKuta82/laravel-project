@@ -1,21 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Http\Requests\UsersRequest;
-
 use App\Http\Requests\UsersEditRequest;
-
 use Illuminate\Support\Facades\Session;
-
 use App\User;
-
 use App\Role;
-
 use App\Photo;
 
 class AdminUsersController extends Controller
