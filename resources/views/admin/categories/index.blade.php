@@ -39,10 +39,16 @@
 		  	@foreach($categories as $category)
 		    <tr>
 		      <th scope="row">{{$category->id}}</th>
-		      <td>{{$category->name}}</td>
+		      <td>
+		      	@if($category->posts->count() > 0)
+		      		<a href="{{route('admin.categories.show', $category->id)}}">{{$category->name}}</a>
+		      	@else
+		      		{{$category->name}}
+		      	@endif
+		      </td>
 		      <td>{{$category->created_at ? $category->created_at->toDayDateTimeString() : 'No date'}}</td>
 		      <td>{{$category->updated_at ? $category->created_at->toDayDateTimeString() : 'No date'}}</td>
-		      <td>{{$category->id}}</td>
+		      <td class="text-center">{{$category->posts ? $category->posts->count() : 'No posts'}}</td>
 		    </tr>
 		    @endforeach
 		  </tbody>

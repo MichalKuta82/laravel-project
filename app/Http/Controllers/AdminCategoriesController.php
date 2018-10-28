@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CategoriesRequest;
 use App\Category;
+use App\Post;
 
 class AdminCategoriesController extends Controller
 {
@@ -17,8 +18,8 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
+        $categories = Category::with('posts')->get();
+        return view('admin.categories.index', compact('categories', 'post_count'));
     }
 
     /**
@@ -54,6 +55,10 @@ class AdminCategoriesController extends Controller
     public function show($id)
     {
         //
+        $categories = Category::whereId($id)->get();
+        $posts = Post::whereCategoryId($id)->get();
+
+        return view('admin.categories.show', compact('posts', 'categories'));
     }
 
     /**
