@@ -2,6 +2,15 @@
 
 @section('content')
 
+@if(Session::has('deleted_category'))
+  <div class="alert alert-danger text-center">{{session('deleted_category')}}</div>
+@endif
+@if(Session::has('updated_category'))
+  <div class="alert alert-success text-center">{{session('updated_category')}}</div>
+@endif
+@if(Session::has('created_category'))
+  <div class="alert alert-success text-center">{{session('created_category')}}</div>
+@endif
 
 <div class="row">
 	<div class="col-md-6">
@@ -39,16 +48,16 @@
 		  	@foreach($categories as $category)
 		    <tr>
 		      <th scope="row">{{$category->id}}</th>
-		      <td>
+		      <td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></td>
+		      <td>{{$category->created_at ? $category->created_at->toDayDateTimeString() : 'No date'}}</td>
+		      <td>{{$category->updated_at ? $category->updated_at->toDayDateTimeString() : 'No date'}}</td>
+		      <td class="text-center">
 		      	@if($category->posts->count() > 0)
-		      		<a href="{{route('admin.categories.show', $category->id)}}">{{$category->name}}</a>
+		      		<a href="{{route('admin.categories.show', $category->id)}}">{{$category->posts->count()}}</a>
 		      	@else
-		      		{{$category->name}}
+		      	 	{{'No posts'}}
 		      	@endif
 		      </td>
-		      <td>{{$category->created_at ? $category->created_at->toDayDateTimeString() : 'No date'}}</td>
-		      <td>{{$category->updated_at ? $category->created_at->toDayDateTimeString() : 'No date'}}</td>
-		      <td class="text-center">{{$category->posts ? $category->posts->count() : 'No posts'}}</td>
 		    </tr>
 		    @endforeach
 		  </tbody>

@@ -139,13 +139,31 @@ class AdminPostsController extends Controller
         //
         $post = Post::findOrFail($id);
 
-        if (unlink(public_path() . ($post->photo->file))) {
+        $posts = Post::all()->count();
 
-            $post->delete();
+        if ($posts = 1) {
 
-            Session::flash('deleted_post', 'The post ' . $post->title . ' has been deleted');
+            if (unlink(public_path() . ($post->photo->file))) {
 
-            return redirect('/admin/posts');
+                $post->category()->delete();
+
+                $post->delete();
+
+                Session::flash('deleted_post', 'The post ' . $post->title . ' has been deleted');
+
+                return redirect('/admin/posts');
+            }
+
+        }else{
+                if (unlink(public_path() . ($post->photo->file))) {
+
+                $post->delete();
+
+                Session::flash('deleted_post', 'The post ' . $post->title . ' has been deleted');
+
+                return redirect('/admin/posts');
+            }
+
         }
     }
 }
