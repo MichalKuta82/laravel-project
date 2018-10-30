@@ -163,7 +163,13 @@ class AdminPostsController extends Controller
 
                 return redirect('/admin/posts');
             }
-
         }
+    }
+
+    public function post($id)
+    {
+        $post = Post::whereId($id)->first();
+
+        return view('post', compact('post'));
     }
 }

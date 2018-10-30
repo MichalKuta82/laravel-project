@@ -26,8 +26,7 @@
 		    	{{$errors->first('category_id')}}
 		    @endif
 		  </div>
-		  <div class="form-group">
-		  	<div class="form-group {{$errors->has('photo_id') ? 'has-error' : '' }}">
+		  <div class="form-group {{$errors->has('photo_id') ? 'has-error' : '' }}">
 		    <!--<label for="post_title">Post Title</label>-->
 		    {!! Form::label('photo_id', 'Photo:', ['for' => 'photo_id']) !!}
 		    <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->

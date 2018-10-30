@@ -133,6 +133,10 @@
                                 <a href="{{route('admin.posts.create')}}">Create Post</a>
                             </li>
 
+                            <li>
+                                <a href="{{route('admin.comments.index')}}">All Comments</a>
+                            </li>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -146,7 +150,7 @@
                             </li>
 
                             <li>
-                                <a href="{{route('admin.categories.create')}}">Create Category</a>
+                                <a href="{{route('admin.categories.index')}}">Create Category</a>
                             </li>
 
                         </ul>
@@ -319,8 +323,13 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="{{asset('js/libs.js')}}"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script src="{{asset('js/libs.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 @yield('scripts')

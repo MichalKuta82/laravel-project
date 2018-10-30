@@ -270,8 +270,12 @@ class ComposerStaticInit0d1457d846e8384394aedaf6e1f33b5d
     );
 
     public static $classMap = array (
+        'AddPhotoColumnToCommentRepliesTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_180624_add_photo_column_to_comment_replies_table.php',
+        'AddPhotoColumnToCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_180025_add_photo_column_to_comments_table.php',
         'AddPhotoIdToUsers' => __DIR__ . '/../..' . '/database/migrations/2018_10_24_160440_add_photo_id_to_users.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_26_124549_create_categories_table.php',
+        'CreateCommentRepliesTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_144206_create_comment_replies_table.php',
+        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_144148_create_comments_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePhotosTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_24_162801_create_photos_table.php',
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_25_190637_create_posts_table.php',

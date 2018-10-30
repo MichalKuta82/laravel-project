@@ -25,6 +25,7 @@
 		      <th scope="col">Body</th>
 		      <th scope="col">Created At</th>
 		      <th scope="col">Updated At</th>
+		      <th scope="col">Comments</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -32,13 +33,21 @@
 			  	@foreach($posts as $post)
 				    <tr>
 				      <th scope="row">{{$post->id}}</th>
-				      <td><img width="50" src="{{($post->photo_id > 0) ? $post->photo->file : 'https://via.placeholder.com/200'}}"></td>
+				      <td><img width="50" src="{{$post->photo ? $post->photo->file : 'https://via.placeholder.com/200'}}"></td>
 				      <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
 				      <td>{{($post->category_id > 0) ? $post->category->name : 'Uncategorized'}}</td>
 				      <td>{{$post->title}}</td>
 				      <td>{{str_limit($post->body, 15)}}</td>
 				      <td>{{$post->created_at->toDayDateTimeString()}}</td>
 				      <td>{{$post->updated_at->toDayDateTimeString()}}</td>
+				      <td>
+				      	@if(count($post->comments) > 0)
+				      		<a href="{{route('admin.comments.show', $post->id)}}">{{count($post->comments)}}</a>
+				      	@else
+				      		<p>No Comments</p>
+				      	@endif
+				      </td>
+				      <td><a href="{{route('home.post', $post->id)}}">View post</a></td>
 				    </tr>
 			  	@endforeach
 		  	@endif
