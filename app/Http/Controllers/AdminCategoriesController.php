@@ -20,7 +20,7 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Category::with('posts')->get();
+        $categories = Category::paginate(5);
         return view('admin.categories.index', compact('categories', 'post_count'));
     }
 
@@ -86,16 +86,12 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoriesRequest $request, $id)
     {
         //
-        $input = $request->all();
-
         $category = Category::findOrFail($id);
 
-        $input['category_id'] = $category->id;
-
-        $category->update($input);
+        $category->update($request->all());
 
         Session::flash('updated_category', 'The category ' . $category->name . ' has been updated');
 
@@ -120,5 +116,22 @@ class AdminCategoriesController extends Controller
         Session::flash('deleted_category', 'The category ' . $category->name . ' and associated posts have been deleted');
 
         return redirect('/admin/categories'); 
+    }
+
+    public function categoryposts()
+    {
+        $categories = Category::paginate(2);
+
+        $posts = Post::all();
+
+        return view('admin.categories.categoryposts', compact('categories', 'posts'));
+
+        // foreach ($categories as $category) {
+        //     echo $category->name. '<br>';
+        //     foreach ($category->posts as $post) {   
+        //         echo $post->title . '<br>';
+        //     }
+        // }
+
     }
 }

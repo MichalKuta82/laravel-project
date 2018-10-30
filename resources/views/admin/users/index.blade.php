@@ -29,7 +29,6 @@
   </thead>
   <tbody>
   	@if($users)
-
 	  	@foreach($users as $user)
 		    <tr>
 		      <td>{{$user->id}}</td>
@@ -42,9 +41,8 @@
 		      <td>{{$user->updated_at->toDayDateTimeString()}}</td>
 		    </tr>
 	    @endforeach
-
     @endif
   </tbody>
 </table>
-
+{{ $users->links() }}  
 @stop

@@ -19,7 +19,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-
+Route::get('/admin/categories/categoryposts', 'AdminCategoriesController@categoryposts');
 
 Route::get('/admin', function(){
 	return view('admin.index');
@@ -31,5 +31,11 @@ Route::group(['middleware' => 'admin'], function(){
 
 	Route::resource('/admin/posts', 'AdminPostsController');
 
+	Route::get('/admin/categories/categoryposts', 'AdminCategoriesController@categoryposts');
+
 	Route::resource('/admin/categories', 'AdminCategoriesController');
+
+	Route::resource('admin/media', 'AdminMediasController');
+
+	
 });

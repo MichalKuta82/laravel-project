@@ -44,5 +44,5 @@
 		  	@endif
 		  </tbody>
 		</table>
-
+		{{ $posts->links() }}	
 @stop

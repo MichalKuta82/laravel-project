@@ -28,7 +28,7 @@
 		  </div>
 		  <div class="form-group">
 		    <!--<label for="post_title">Post Title</label>-->
-		    {!! Form::label('role_id', 'Role Id:', ['for' => 'role_id']) !!}
+		    {!! Form::label('role_name', 'Role Name:', ['for' => 'role_name']) !!}
 		    <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->
 		    {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class' => 'form-control', 'name' => 'role_id']) !!}
 		  </div>
