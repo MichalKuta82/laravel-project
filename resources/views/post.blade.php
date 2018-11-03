@@ -5,6 +5,9 @@
 @if(Session::has('comment'))
   <div class="alert alert-success text-center">{{session('comment')}}</div>
 @endif
+@if(Session::has('reply'))
+  <div class="alert alert-success text-center">{{session('reply')}}</div>
+@endif
 
 
         <!-- Blog Post -->
@@ -37,14 +40,13 @@
 
         <!-- Blog Comments -->
 
+    @if(Auth::check())
         <!-- Comments Form -->
         <div class="well">
             <h4>Leave a Comment:</h4>
 	    <!--<form action="/posts" method="post">-->
 		{!! Form::open(['method' => 'POST', 'action' => 'PostCommentsController@store']) !!}
-
 			<input type="hidden" name="post_id" value="{{$post->id}}">
-
 		  <div class="form-group {{$errors->has('body') ? 'has-error' : '' }}">
 		    <!--<label for="post_title">Post Title</label>-->
 		    {!! Form::label('body', 'Body:', ['for' => 'body']) !!}
@@ -58,48 +60,83 @@
 		  <!--<button type="submit" name="submit" class="btn btn-primary">Create</button>-->
 		{!! Form::close() !!}
         </div>
-
+    @endif
         <hr>
 
         <!-- Posted Comments -->
-
+    @if(count($comments) > 0)
+        @foreach($comments as $comment)
         <!-- Comment -->
         <div class="media">
             <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
+                <img class="media-object" height="64" src="{{$comment->photo ? $comment->photo : 'https://via.placeholder.com/64'}}" alt="">
             </a>
-            <div class="media-body">
-                <h4 class="media-heading">Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
+            <div idclass="media-body">
+                <h4 class="media-heading">{{$comment->author}}
+                    <small>{{$comment->created_at ? $comment->created_at->toDayDateTimeString() : 'No date'}}</small>
                 </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
+                <p>{{$comment->body}}</p>
 
-        <!-- Comment -->
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                <!-- Nested Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Nested Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <!-- Reply Form -->
+                    <div class="comment-reply-container">
+                            <button type="button" class="btn btn-primary toggle-reply pull-right">Reply</button>
+                        <div class="comment-reply">
+                            <h5>Leave a Reply:</h5>
+                            <!--<form action="/posts" method="post">-->
+                            {!! Form::open(['method' => 'POST', 'action' => 'CommentRepliesController@createreply']) !!}
+                                <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                              <div class="form-group {{$errors->has('body') ? 'has-error' : '' }}">
+                                <!--<label for="post_title">Post Title</label>-->
+                                {!! Form::label('body', 'Body:', ['for' => 'body']) !!}
+                                <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->
+                                {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Reply', 'name' => 'body', 'rows' => 2]) !!}
+                                @if($errors->has('body'))
+                                    {{$errors->first('body')}}
+                                @endif
+                              </div>
+                              {!! Form::submit('Submit Reply', ['class' => 'btn btn-primary', 'name' => 'submit']) !!}
+                              <!--<button type="submit" name="submit" class="btn btn-primary">Create</button>-->
+                            {!! Form::close() !!}
+                        </div>
                     </div>
-                </div>
-                <!-- End Nested Comment -->
+
+                <!-- Nested Reply -->
+                @if(count($comment->replies) > 0)
+                    @foreach($comment->replies as $reply)
+                        @if($reply->is_active == 1)
+                            <div class="media nested-reply">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" height="64" src="{{$reply->photo ? $reply->photo : 'https://via.placeholder.com/64'}}" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{$reply->author}}
+                                        <small>{{$reply->created_at ? $reply->created_at->toDayDateTimeString() : 'No date'}}</small>
+                                    </h4>
+                                    <p>{{$reply->body}}</p>
+                                </div>
+                            </div>
+                        <!-- End Nested Reply -->
+                        @else
+                            <h3 class="text-center">Reply not active</h3>
+                        @endif
+                    @endforeach
+                @else
+                    <h3 class="text-center">No replies</h3>
+                @endif
             </div>
         </div>
+        @endforeach
+    @endif
+@stop
 
+@section('scripts')
+
+    <script type="text/javascript">
+        
+        $(".comment-reply-container .toggle-reply").click(function(){
+
+            $(this).next().slideToggle("slow");
+        });
+
+    </script>
 @stop

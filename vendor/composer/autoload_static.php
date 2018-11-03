@@ -86,8 +86,10 @@ class ComposerStaticInit0d1457d846e8384394aedaf6e1f33b5d
         ),
         'C' => 
         array (
+            'Cviebrock\\EloquentSluggable\\' => 28,
             'Cron\\' => 5,
             'Collective\\Html\\' => 16,
+            'Cocur\\Slugify\\' => 14,
             'ClassPreloader\\' => 15,
         ),
         'A' => 
@@ -223,6 +225,10 @@ class ComposerStaticInit0d1457d846e8384394aedaf6e1f33b5d
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
+        'Cviebrock\\EloquentSluggable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cviebrock/eloquent-sluggable/src',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -230,6 +236,10 @@ class ComposerStaticInit0d1457d846e8384394aedaf6e1f33b5d
         'Collective\\Html\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
+        'Cocur\\Slugify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cocur/slugify/src',
         ),
         'ClassPreloader\\' => 
         array (
@@ -273,6 +283,7 @@ class ComposerStaticInit0d1457d846e8384394aedaf6e1f33b5d
         'AddPhotoColumnToCommentRepliesTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_180624_add_photo_column_to_comment_replies_table.php',
         'AddPhotoColumnToCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_180025_add_photo_column_to_comments_table.php',
         'AddPhotoIdToUsers' => __DIR__ . '/../..' . '/database/migrations/2018_10_24_160440_add_photo_id_to_users.php',
+        'AddSlugToPostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_11_03_201444_add_slug_to_posts_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_26_124549_create_categories_table.php',
         'CreateCommentRepliesTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_144206_create_comment_replies_table.php',
         'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_144148_create_comments_table.php',

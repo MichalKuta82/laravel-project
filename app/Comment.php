@@ -8,7 +8,7 @@ class Comment extends Model
 {
     //
 	protected $fillable = [
-		'post_id', 'author', 'email', 'is_active', 'body',
+		'post_id', 'author', 'email', 'is_active', 'body', 'photo'
 	];
 
     public function replies()

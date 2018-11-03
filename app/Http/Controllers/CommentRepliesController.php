@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
+use App\CommentReply;
+use App\Comment;
 
 class CommentRepliesController extends Controller
 {
@@ -39,6 +42,26 @@ class CommentRepliesController extends Controller
         //
     }
 
+    public function createreply(Request $request)
+    {
+        $user = Auth::user();
+
+        $data = [
+            'comment_id' => $request->comment_id,
+            'author' => $user->name,
+            'photo' => $user->photo->file,
+            'email' => $user->email,
+            'body' => $request->body,
+        ];
+
+        if (CommentReply::create($data)) {
+
+            Session::flash('reply', 'The reply has been created and awaiting for activation');
+        }
+
+        return redirect()->back();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -48,6 +71,11 @@ class CommentRepliesController extends Controller
     public function show($id)
     {
         //
+        $comment = Comment::findOrFail($id);
+
+        $replies = $comment->replies;
+
+        return view('admin.comments.replies.show', compact('replies'));
     }
 
     /**
@@ -71,6 +99,21 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $reply = CommentReply::findOrFail($id);
+
+        if ($reply->is_active == 1) {
+
+            Session::flash('unapproved_reply', 'The reply has been unapproved');
+
+            $reply->update($request->all());
+        }else{
+
+            Session::flash('approved_reply', 'The reply has been approved');
+
+            $reply->update($request->all());
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -82,5 +125,12 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
+        if (CommentReply::findOrFail($id)->delete()) {
+
+            Session::flash('deleted_reply', 'The reply has been deleted');
+
+        }
+
+        return redirect()->back();
     }
 }

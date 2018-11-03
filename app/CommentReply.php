@@ -8,7 +8,7 @@ class CommentReply extends Model
 {
     //
     protected $fillable = [
-		'post_id', 'author', 'email', 'is_active', 'body',
+		'comment_id', 'author', 'email', 'is_active', 'body', 'photo'
 	];
 
 	public function comment()

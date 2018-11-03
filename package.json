@@ -7,5 +7,8 @@
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
     "laravel-elixir": "^6.0.0-18"
+  },
+  "scripts": {
+    "gulp": "gulp"
   }
 }
