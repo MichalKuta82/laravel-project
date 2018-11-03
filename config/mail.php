@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => env('MAIL_FROM_EMAIL', 'do_not_reply@email.com'), 'name' => env('MAIL_FROM_NAME', 'Web Media')],
 
     /*
     |--------------------------------------------------------------------------
@@ -108,5 +108,13 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'stream' => [
+   'ssl' => [
+      'allow_self_signed' => true,
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+   ],
+],
 
 ];
