@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 //Route::get('/admin/categories/categoryposts', 'AdminCategoriesController@categoryposts');
 
-Route::get('/post/{id}', ['as' => 'home.post', 'uses' => 'AdminPostsController@post']);
+Route::get('/post/{slug}', ['as' => 'home.post', 'uses' => 'AdminPostsController@post']);
 
 Route::group(['middleware' => 'admin'], function(){
 
