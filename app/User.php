@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Events\UserHasRegistered;
 
 class User extends Authenticatable
 {
