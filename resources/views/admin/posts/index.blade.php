@@ -47,7 +47,7 @@
 				      		<p>No Comments</p>
 				      	@endif
 				      </td>
-				      <td><a href="{{route('home.post', $post->id)}}">View post</a></td>
+				      <td><a href="{{route('home.post', $post->slug)}}">View post</a></td>
 				    </tr>
 			  	@endforeach
 		  	@endif

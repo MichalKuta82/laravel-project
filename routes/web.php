@@ -23,6 +23,8 @@ Route::get('/home','HomeController@index');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
+Route::get('/post/{slug}', ['as' => 'home.post', 'uses' => 'AdminPostsController@post']);
+
 Route::group(['middleware' => 'admin'], function(){
 
 	Route::get('/admin', function(){
@@ -35,6 +37,8 @@ Route::group(['middleware' => 'admin'], function(){
 		'create' => 'admin.users.create',
 		'store' => 'admin.users.store',
 		'destroy' => 'admin.users.destroy',
+		'show' => 'admin.users.show',
+		'update' => 'admin.users.update',
 	]]);
 
 	Route::resource('/admin/posts', 'AdminPostsController', ['names' => [
@@ -43,6 +47,8 @@ Route::group(['middleware' => 'admin'], function(){
 		'create' => 'admin.posts.create',
 		'store' => 'admin.posts.store',
 		'destroy' => 'admin.posts.destroy',
+		'show' => 'admin.posts.show',
+		'update' => 'admin.posts.update',
 	]]);
 
 	Route::get('/admin/categories/categoryposts', 'AdminCategoriesController@categoryposts');
@@ -81,4 +87,8 @@ Route::group(['middleware' => 'admin'], function(){
 		'destroy' => 'admin.comments.replies.destroy',
 		'show' => 'admin.comments.replies.show',
 	]]);
+});
+Route::group(['middleware' => 'auth'], function(){
+
+	Route::post('comment/reply', 'CommentRepliesController@createreply');
 });
