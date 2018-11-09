@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('includes.tinyeditor')
+
 <div class="row">
     <div class="col-md-3">
     	<img class="img-thumbnail" src="{{$post->photo ? $post->photo->file : 'https://via.placeholder.com/200'}}">
@@ -34,7 +36,6 @@
 		    {!! Form::label('photo_id', 'Photo:', ['for' => 'photo_id']) !!}
 		    <!--<input type="text" class="form-control" name="title" placeholder="Post Title">-->
 		    {!! Form::file('photo_id', null, ['class' => 'form-control', 'placeholder' => 'Photo', 'name' => 'photo_id']) !!}
-
 		  </div>
 		  <div class="form-group {{$errors->has('body') ? 'has-error' : '' }}">
 		    <!--<label for="post_title">Post Title</label>-->

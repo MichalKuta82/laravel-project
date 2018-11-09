@@ -28,12 +28,12 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-thumbnail" src="{{$post->photo ? $post->photo->file : 'https://via.placeholder.com/300'}}">
+        <img class="img-thumbnail" src="{{$post->photo ? $post->photo->file : $post->placeholder()}}">
 
         <hr>
 
         <!-- Post Content -->
-        <p class="lead">{{$post->body}}</p>
+        <p class="lead">{!! $post->body !!}</p>
 
         <hr>
 
