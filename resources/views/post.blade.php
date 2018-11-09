@@ -28,7 +28,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-thumbnail" src="{{$post->photo ? $post->photo->file : $post->placeholder()}}">
+        <img class="img-thumbnail" src="{{$post->photo ? $post->photo->file : 'https://via.placeholder.com/700x300'}}">
 
         <hr>
 

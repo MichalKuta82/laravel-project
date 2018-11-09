@@ -175,8 +175,8 @@ class AdminPostsController extends Controller
         return view('post', compact('post', 'comments'));
     }
 
-    public function placeholder()
-    {
-        return 'https://via.placeholder.com/300';
-    }
+    // public function placeholder()
+    // {
+    //     return 'https://via.placeholder.com/300';
+    // }
 }

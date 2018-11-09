@@ -70,6 +70,8 @@ Route::group(['middleware' => 'admin'], function(){
 		'destroy' => 'admin.media.destroy',
 	]]);
 
+	Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
+
 	Route::resource('admin/comments', 'PostCommentsController', ['names' => [
 		'index' => 'admin.comments.index',
 		'edit' => 'admin.comments.edit',
