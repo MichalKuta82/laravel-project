@@ -119,7 +119,7 @@ class AdminPostsController extends Controller
 
             $input['photo_id'] = $photo->id;
         }
-
+        
         Auth::user()->posts()->whereId($id)->first()->update($input);
 
         Session::flash('updated_post', 'The post ' . $input['title'] . ' has been updated');
