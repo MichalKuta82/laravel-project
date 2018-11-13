@@ -13,7 +13,7 @@
                     <a href="{{route('home.post', $post->slug)}}">{{$post->title}}</a>
                 </h3>
                 <p class="lead">
-                    by <a href="index.php">{{$post->user->name}}</a>
+                    by {{$post->user->name}}</a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> Posted on {{$post->created_at->toDayDateTimeString()}}</p>
                 <hr>
@@ -25,15 +25,13 @@
                 <hr>
             @endforeach
             @endif
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
+             <!-- Pager -->
+            <div class="row">
+                <div class="col-md-6 col-md-offset-5">
+                    {{$posts->render()}}
+                </div>
+            </div>
+                
 
             </div>
 

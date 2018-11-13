@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,19 @@ class HomeController extends Controller
     {
         $posts = Post::paginate(5);
 
-        return view('front.home', compact('posts'));
+        $categories = Category::all();
+
+        return view('front.home', compact('posts', 'categories'));
+    }
+
+    public function post($id)
+    {
+        $post = Post::whereSlug($id)->first();
+
+        $categories = Category::all();
+
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+        return view('post', compact('post', 'comments', 'categories'));
     }
 }

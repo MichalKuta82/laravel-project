@@ -166,15 +166,6 @@ class AdminPostsController extends Controller
         }
     }
 
-    public function post($id)
-    {
-        $post = Post::whereSlug($id)->first();
-
-        $comments = $post->comments()->whereIsActive(1)->get();
-
-        return view('post', compact('post', 'comments'));
-    }
-
     // public function placeholder()
     // {
     //     return 'https://via.placeholder.com/300';
