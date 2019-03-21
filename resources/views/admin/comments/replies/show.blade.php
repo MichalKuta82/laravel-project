@@ -36,7 +36,7 @@
 		      <td><a href="{{route('admin.comments.replies.edit', $reply->id)}}">{{str_limit($reply->body, 10)}}</a></td>
 		      <td>{{$reply->created_at ? $reply->created_at->toDayDateTimeString() : 'No date'}}</td>
 		      <td>{{$reply->updated_at ? $reply->updated_at->toDayDateTimeString() : 'No date'}}</td>
-		      <td><a href="{{route('home.post', $reply->comment->post->id)}}">View Post</a></td>
+		      <td><a href="{{route('home.post', $reply->comment->post->slug)}}">View Post</a></td>
 		      <td>
 		      	@if($reply->is_active == 1)
 					<!--<form action="/posts" method="post">-->

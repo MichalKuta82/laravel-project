@@ -47,7 +47,7 @@ Route::group(['middleware' => 'admin'], function(){
 		'update' => 'admin.posts.update',
 	]]);
 
-	Route::get('/admin/categories/categoryposts', 'AdminCategoriesController@categoryposts');
+	Route::get('/admin/categories/categoryposts', 'AdminCategoriesController@categoryposts')->name('admin.categories.categoryposts');
 
 	Route::resource('/admin/categories', 'AdminCategoriesController', ['names' => [
 		'index' => 'admin.categories.index',

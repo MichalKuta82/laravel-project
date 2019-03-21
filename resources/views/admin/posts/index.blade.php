@@ -36,7 +36,6 @@
 				      <td><img width="50" src="{{$post->photo ? $post->photo->file : 'https://via.placeholder.com/200'}}"></td>
 				      <td><a href="{{route('admin.users.edit', $post->user->id)}}">{{$post->user->name}}</a></td>
 				      <td><a href="{{route('admin.categories.edit', $post->category->id)}}">{{($post->category_id > 0) ? $post->category->name : 'Uncategorized'}}</a></td>
-				      <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
 				      <td>{{$post->created_at->toDayDateTimeString()}}</td>
 				      <td>{{$post->updated_at->toDayDateTimeString()}}</td>
 				      <td>

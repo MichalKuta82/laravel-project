@@ -37,7 +37,7 @@
 		      <td><a href="{{route('admin.comments.edit', $comment->id)}}">{{str_limit($comment->body, 10)}}</a></td>
 		      <td>{{$comment->created_at ? $comment->created_at->toDayDateTimeString() : 'No date'}}</td>
 		      <td>{{$comment->updated_at ? $comment->updated_at->toDayDateTimeString() : 'No date'}}</td>
-		      <td><a href="{{route('home.post', $comment->post->id)}}">View post</a></td>
+		      <td><a href="{{route('home.post', $comment->post->slug)}}">View post</a></td>
 		      <td><a href="{{route('admin.comments.replies.show', $comment->id)}}">View replies</a></td>
 		      <td>
 		      	@if($comment->is_active == 1)
